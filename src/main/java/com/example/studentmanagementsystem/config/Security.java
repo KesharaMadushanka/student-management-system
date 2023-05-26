@@ -25,8 +25,12 @@ public class Security {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/registration/**").permitAll()
+                        .requestMatchers("/registration").permitAll()
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/js/**").permitAll()
+                        .requestMatchers("/fonts/**").permitAll()
                         .requestMatchers("user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("admin/**").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
