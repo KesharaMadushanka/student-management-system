@@ -1,6 +1,8 @@
 package com.example.studentmanagementsystem.controller;
 
+import com.example.studentmanagementsystem.dto.UserDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,8 +19,5 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/registration")
-    public String registrationForm() {
-        return "registration";
-    }
+
 }
