@@ -18,7 +18,7 @@
     <div th:if="${param.delError}" class="alert alert-warning" role="alert">
         User Deletion Failed!
     </div>
-    <div th:if="${editSuccess}" class="alert alert-primary" role="alert">
+    <div th:if="${param.editSuccess}" class="alert alert-primary" role="alert">
         User successfully Updated!
     </div>
 
@@ -42,15 +42,14 @@
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.email}"></td>
 
-                    <!--edit button-->
-<!--                    <form   th:method=""-->
-<!--                            th:action="@{/delete/{id}(id=${user.id})}"-->
-<!--                    >-->
-<!--                        <td>-->
-<!--                            <button type="submit" class="btn btn-warning">Edit&nbsp;&nbsp; <i-->
-<!--                                    class="fa fa-edit"></i></button>-->
-<!--                        </td>-->
-<!--                    </form>-->
+                    <!--                    edit button-->
+                    <form method="get"
+                          th:action="@{ViewUsers/edit/{id}(id=${user.id})}">
+                        <td>
+                            <button type="submit" class="btn btn-warning">Edit&nbsp;&nbsp; <i
+                                    class="fa fa-edit"></i></button>
+                        </td>
+                    </form>
 
                     <!--delete button-->
                     <form method="post"
