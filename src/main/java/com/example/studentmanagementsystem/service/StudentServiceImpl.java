@@ -9,6 +9,8 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -56,5 +58,21 @@ public class StudentServiceImpl implements StudentService {
         student.setStudentNumber(StudentNumberGenerator.getStudentNumber(id));
 
         studentRepository.save(student);
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    @Override
+    public boolean deleteStudent(Long id) {
+        try {
+            studentRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }

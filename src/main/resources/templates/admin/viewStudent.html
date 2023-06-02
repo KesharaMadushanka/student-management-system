@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>View Users</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container"
+     style="margin-top:80px;background-size:cover;background-position:center;padding: 20px;width: 1700px">
+    <!--display alert if success-->
+    <div th:if="${param.notfound}" class="alert alert-danger">
+        No Records Found!
+    </div>
+    <div th:if="${param.delSuccess}" class="alert alert-danger">
+        Student Successfully Deleted
+    </div>
+    <div th:if="${param.delError}" class="alert alert-warning">
+        Student Deletion Error
+    </div>
+
+    <div class="card" style="background-color:rgba(255, 255, 255, 0.5)">
+        <div class="card-header">
+            Students
+        </div>
+        <div class="card-body">
+            <table class="table table-dark table-striped table-hover">
+                <tr>
+                    <th>Student Number</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>NIC</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Date Of Birth</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.studentNumber}"></td>
+                    <td th:text="${student.studentFirstName}"></td>
+                    <td th:text="${student.studentLastName}"></td>
+                    <td th:text="${student.NIC}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.phoneNumber}"></td>
+                    <td th:text="${student.dob}"></td>
+                    <td>
+                        <form>
+                            <input type="hidden" th:value="${student.id}">
+                            <button type="submit" class="btn btn-warning">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{viewStudent/delete/{id}(id=${student.id})}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

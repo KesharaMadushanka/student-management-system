@@ -36,7 +36,7 @@ public class ViewUsersController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Long id, Model model) {
+    public String deleteUser(@PathVariable Long id) {
 
         if (userService.deleteUser(id)) {
             return "redirect:/admin/ViewUsers?delSuccess";
